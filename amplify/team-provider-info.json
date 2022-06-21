@@ -1,0 +1,20 @@
+{
+  "master": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-awsamplifysaasboiler-master-143914-authRole",
+      "UnauthRoleArn": "arn:aws:iam::272589676550:role/amplify-awsamplifysaasboiler-master-143914-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::272589676550:role/amplify-awsamplifysaasboiler-master-143914-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-awsamplifysaasboiler-master-143914-deployment",
+      "UnauthRoleName": "amplify-awsamplifysaasboiler-master-143914-unauthRole",
+      "StackName": "amplify-awsamplifysaasboiler-master-143914",
+      "StackId": "arn:aws:cloudformation:eu-central-1:272589676550:stack/amplify-awsamplifysaasboiler-master-143914/d5db91a0-eb15-11ec-af9b-0a3b625a4618",
+      "AmplifyAppId": "d1fw7i1ro7x9xz"
+    },
+    "categories": {
+      "auth": {
+        "awsamplifysaasboilerc1590926": {}
+      }
+    }
+  }
+}
