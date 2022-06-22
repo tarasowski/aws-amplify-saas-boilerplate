@@ -28,7 +28,7 @@
     },
     onSuccess: (values) => {
       isLoading = false;
-      navigateTo("confirmation")
+      navigateTo("confirmation");
     },
     onError: (values) => {
       console.log("from error", values.message);

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "awsamplifysaasboiler",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/home/tarasowski/Coding/tools/aws-amplify-saas-boilerplate/amplify/backend/api/awsamplifysaasboiler/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authawsamplifysaasboilerc1590926"
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    }
+  }
+}
