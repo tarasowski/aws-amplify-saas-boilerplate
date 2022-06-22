@@ -60,10 +60,10 @@
     "adminQueries": false,
     "triggers": {},
     "hostedUI": false,
-    "authProviders": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [],
+    "authProviders": []
   }
 }
