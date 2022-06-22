@@ -9,7 +9,10 @@
     "serve": "vite preview"
   },
   "devDependencies": {
+    "@rgossiaux/svelte-headlessui": "^1.0.2",
+    "@rgossiaux/svelte-heroicons": "^0.1.2",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.39",
+    "@tailwindcss/forms": "^0.5.2",
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",
     "svelte": "^3.46.4",
@@ -23,8 +26,9 @@
     "@felte/validator-yup": "^1.0.8",
     "aws-amplify": "^4.3.24",
     "felte": "^1.2.2",
+    "svelte-modals": "^1.1.0",
     "svelte-notifications": "^0.9.95",
-    "svelte-spa-router": "^3.2.0",
+    "svelte-router-spa": "^6.0.3",
     "yup": "^0.32.11"
   }
 }

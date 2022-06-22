@@ -6,6 +6,7 @@
   import { store, registration } from "./auth.js";
   import { getNotificationsContext } from "svelte-notifications";
   import "tippy.js/dist/tippy.css";
+  import { navigateTo } from "svelte-router-spa";
 
   let isLoading = false;
   const { addNotification } = getNotificationsContext();
@@ -26,8 +27,8 @@
       await registration(values);
     },
     onSuccess: (values) => {
-      window.open("/#/confirmation", "_self");
       isLoading = false;
+      navigateTo("confirmation")
     },
     onError: (values) => {
       console.log("from error", values.message);
@@ -45,7 +46,11 @@
 <!-- component -->
 <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
   <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-    <h1 class="font-bold text-center text-2xl mb-5">Registration</h1>
+    <h1 class="font-bold text-center text-2xl mb-2">Register a new account</h1>
+    <p class="text-center mb-4">
+      Or
+      <a href="/login" class="text-blue-500">login into your account</a>
+    </p>
     <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
       <div class="px-5 py-7">
         <form use:form>
@@ -68,7 +73,7 @@
           {#if isLoading === false}
           <button
             type="submit"
-            class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+            class="transition duration-200 bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
           >
             <span class="inline-block mr-2">Register</span>
             <svg
@@ -91,7 +96,7 @@
           <button
             disabled
             type="submit"
-            class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+            class="transition duration-200 bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
           >
             <span class="inline-block mr-2">Register</span>
             <svg
@@ -117,7 +122,7 @@
       <div class="py-5">
         <div class="grid grid-cols-2 gap-1">
           <div class="text-center sm:text-left whitespace-nowrap">
-            <a href="/#/forgot-1">
+            <a href="/forgot-1">
               <button
                 class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset"
               >

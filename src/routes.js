@@ -3,11 +3,44 @@ import Register from "./Register.svelte";
 import Confirmation from "./Confirmation.svelte";
 import ForgotPasswordStep1 from "./ForgotPasswordStep1.svelte";
 import ForgotPasswordStep2 from "./ForgotPasswordStep2.svelte";
+import Dashboard from "./Dashboard.svelte";
+import Settings from "./Settings.svelte";
+import Header from "./components/Layout/Header.svelte";
+import Auth from "@aws-amplify/auth";
 
-export const routes = {
-  "/login": Login,
-  "/register": Register,
-  "/confirmation": Confirmation,
-  "/forgot-1": ForgotPasswordStep1,
-  "/forgot-2": ForgotPasswordStep2,
+const userIsAdmin = (x) => {
+  try {
+    const userDataKey = localStorage.key(3);
+    const userData = localStorage.getItem(userDataKey);
+    const parsed = JSON.parse(userData);
+    const username = parsed.Username;
+    const email = parsed.UserAttributes.find((y) => y.Name === "email");
+    const emailValue = email.Value;
+    console.log(emailValue);
+    return username !== undefined;
+  } catch (e) {
+    console.log(e)
+    return false;
+  }
 };
+
+export const routes = [
+  { name: "/", component: Login },
+  { name: "login", component: Login },
+  { name: "register", component: Register },
+  { name: "confirmation", component: Confirmation },
+  { name: "forgot-1", component: ForgotPasswordStep1 },
+  { name: "forgot-2", component: ForgotPasswordStep2 },
+  {
+    name: "dashboard",
+    component: Dashboard,
+    layout: Header,
+    onlyIf: { guard: userIsAdmin, redirect: "/login" },
+  },
+  {
+    name: "settings",
+    component: Settings,
+    layout: Header,
+    onlyIf: { guard: userIsAdmin, redirect: "/login" },
+  },
+];

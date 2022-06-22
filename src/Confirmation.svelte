@@ -6,6 +6,7 @@
   import { store, confirmation } from "./auth.js";
   import { getNotificationsContext } from "svelte-notifications";
   import "tippy.js/dist/tippy.css";
+  import { navigateTo } from "svelte-router-spa";
 
   let isLoading = false;
   const { addNotification } = getNotificationsContext();
@@ -24,12 +25,10 @@
       await confirmation($store.email, $store.confirmationCode);
     },
     onSuccess: (values) => {
-      //window.open("/#/confirmation", "_self");
-      console.log("success");
       isLoading = false;
+      navigateTo("dashboard");
     },
     onError: (values) => {
-      console.log("from error", values.message);
       addNotification({
         text: values.message,
         position: "top-center",
@@ -60,7 +59,7 @@
           {#if isLoading === false}
           <button
             type="submit"
-            class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+            class="transition duration-200 bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
           >
             <span class="inline-block mr-2">Confirm</span>
             <svg
@@ -83,7 +82,7 @@
           <button
             disabled
             type="submit"
-            class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+            class="transition duration-200 bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
           >
             <span class="inline-block mr-2">Confirm</span>
             <svg
