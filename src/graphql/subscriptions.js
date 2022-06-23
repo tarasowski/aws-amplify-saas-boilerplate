@@ -4,48 +4,45 @@
 export const onCreateSettings = /* GraphQL */ `
   subscription OnCreateSettings {
     onCreateSettings {
-      userId
+      organizationId
+      firstName
+      lastName
+      email
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
-      id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
 export const onUpdateSettings = /* GraphQL */ `
   subscription OnUpdateSettings {
     onUpdateSettings {
-      userId
+      organizationId
+      firstName
+      lastName
+      email
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
-      id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
 export const onDeleteSettings = /* GraphQL */ `
   subscription OnDeleteSettings {
     onDeleteSettings {
-      userId
+      organizationId
+      firstName
+      lastName
+      email
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
-      id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

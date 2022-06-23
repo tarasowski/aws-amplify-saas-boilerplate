@@ -18,7 +18,8 @@
       "function": {
         "StripeCreateSubscription": {
           "deploymentBucketName": "amplify-awsamplifysaasboiler-master-143914-deployment",
-          "s3Key": "amplify-builds/StripeCreateSubscription-536365714d595a312b68-build.zip"
+          "s3Key": "amplify-builds/StripeCreateSubscription-536b794d562b52706a31-build.zip",
+          "stripeSecretKey": "sk_test_51LDTCzFcQlPUaLrGujtiINAD6ZNlIgsxnvkBXP8f1RH4UokKr9LphM93ZuFa0OahStBVZQyKKqmAlZPq4orcVBtw00TnXydjOr"
         }
       }
     }

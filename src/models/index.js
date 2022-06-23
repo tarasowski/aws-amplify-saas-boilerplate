@@ -3,6 +3,7 @@ import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
 const PaymentStatusEnum = {
+  "OPEN": "OPEN",
   "STARTED": "STARTED",
   "SUCCESS": "SUCCESS",
   "FAILURE": "FAILURE",

@@ -1,6 +1,7 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
 export enum PaymentStatusEnum {
+  OPEN = "OPEN",
   STARTED = "STARTED",
   SUCCESS = "SUCCESS",
   FAILURE = "FAILURE",
@@ -19,7 +20,10 @@ type SettingsMetaData = {
 
 export declare class Settings {
   readonly id: string;
-  readonly userId: string;
+  readonly organizationId: string;
+  readonly firstName?: string | null;
+  readonly lastName?: string | null;
+  readonly email?: string | null;
   readonly stripeCustomerId?: string | null;
   readonly stripeSubscriptionId?: string | null;
   readonly paymentStatus?: PaymentStatusEnum | keyof typeof PaymentStatusEnum | null;

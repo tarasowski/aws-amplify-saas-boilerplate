@@ -6,6 +6,7 @@ import ForgotPasswordStep2 from "./ForgotPasswordStep2.svelte";
 import Dashboard from "./Dashboard.svelte";
 import Settings from "./Settings.svelte";
 import Header from "./components/Layout/Header.svelte";
+import { user } from "./store.js";
 
 const userIsAdmin = (x) => {
   try {
@@ -15,6 +16,7 @@ const userIsAdmin = (x) => {
     const username = parsed.Username;
     const email = parsed.UserAttributes.find((y) => y.Name === "email");
     const emailValue = email.Value;
+    user.set({ email: emailValue, organizationId: username });
     return username !== undefined;
   } catch (e) {
     console.log(e);

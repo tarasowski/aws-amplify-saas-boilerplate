@@ -7,16 +7,15 @@ export const createSettings = /* GraphQL */ `
     $condition: ModelSettingsConditionInput
   ) {
     createSettings(input: $input, condition: $condition) {
-      userId
+      organizationId
+      firstName
+      lastName
+      email
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
-      id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -26,16 +25,15 @@ export const updateSettings = /* GraphQL */ `
     $condition: ModelSettingsConditionInput
   ) {
     updateSettings(input: $input, condition: $condition) {
-      userId
+      organizationId
+      firstName
+      lastName
+      email
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
-      id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -45,16 +43,15 @@ export const deleteSettings = /* GraphQL */ `
     $condition: ModelSettingsConditionInput
   ) {
     deleteSettings(input: $input, condition: $condition) {
-      userId
+      organizationId
+      firstName
+      lastName
+      email
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
-      id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

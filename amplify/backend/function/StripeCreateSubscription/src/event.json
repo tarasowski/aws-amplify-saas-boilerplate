@@ -1,5 +1,10 @@
 {
-  "key1": "value1",
-  "key2": "value2",
-  "key3": "value3"
+  "arguments": {
+    "input": {
+      "organizationId": "001",
+      "priceId": "price_1LDol7FcQlPUaLrGE0Yk1Ks0",
+      "successUrl": "http://localhost:3000",
+      "cancelUrl": "http://localhost:3000"
+    }
+  }
 }

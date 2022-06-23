@@ -1,5 +1,44 @@
 <script>
-  import { showUpgradeModal } from "./store.js"
+  import { showUpgradeModal, user } from "./store.js"
+  import { onMount } from "svelte"
+  import { callAPI } from "./graphql/"
+  import { createSettings, updateSettings } from "./graphql/mutations.js"
+  import { getSettings } from "./graphql/queries.js"
+
+
+  const head = xs => xs[0]
+
+  onMount(async () => {
+    try {
+    const res = await callAPI(getSettings, {organizationId: $user.organizationId})
+    const data = res.data.getSettings
+    $user = {...data}
+    } catch(e) {
+      console.log(e)
+    }
+
+  })
+
+  const handleSave = async () => {
+    try {
+      await callAPI(createSettings, {input: {
+        organizationId: $user.organizationId,
+        firstName:  $user.firstName,
+        lastName: $user.lastName,
+        email: $user.email,
+        paymentStatus: "OPEN"
+      }})
+    } catch(e) {
+      console.log(e)
+      await callAPI(updateSettings, {input: {
+        organizationId: $user.organizationId,
+        firstName:  $user.firstName,
+        lastName: $user.lastName,
+      }})
+    }
+  }
+
+
 </script>
 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
 
@@ -30,6 +69,7 @@
                     type="text"
                     name="first-name"
                     id="first-name"
+                    bind:value={$user.firstName}
                     autocomplete="given-name"
                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   />
@@ -44,6 +84,7 @@
                   <input
                     type="text"
                     name="last-name"
+                    bind:value={$user.lastName}
                     id="last-name"
                     autocomplete="family-name"
                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -60,8 +101,10 @@
                     type="text"
                     name="email-address"
                     id="email-address"
+                    value="{$user.email}"
+                    disabled
                     autocomplete="email"
-                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-gray-100"
                   />
                 </div>
 
@@ -148,6 +191,7 @@
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
+                on:click|preventDefault={handleSave}
                 type="submit"
                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >

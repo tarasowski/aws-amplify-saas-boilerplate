@@ -10,11 +10,32 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "userId": {
-                    "name": "userId",
+                "organizationId": {
+                    "name": "organizationId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "firstName": {
+                    "name": "firstName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "lastName": {
+                    "name": "lastName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "stripeCustomerId": {
@@ -68,7 +89,7 @@ export const schema = {
                     "type": "key",
                     "properties": {
                         "fields": [
-                            "userId"
+                            "organizationId"
                         ]
                     }
                 },
@@ -95,6 +116,7 @@ export const schema = {
         "PaymentStatusEnum": {
             "name": "PaymentStatusEnum",
             "values": [
+                "OPEN",
                 "STARTED",
                 "SUCCESS",
                 "FAILURE",
@@ -117,5 +139,5 @@ export const schema = {
             }
         }
     },
-    "version": "d9354bf97c06ba3ed1ef554e91c6d53d"
+    "version": "9ca4d0a49f64a1c7a6c9cf01b8f53c55"
 };
