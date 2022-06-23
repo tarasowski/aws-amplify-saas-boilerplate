@@ -1,5 +1,5 @@
 <script>
-  import { action } from "./store.js"
+  import { showUpgradeModal } from "./store.js"
 </script>
 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
 
@@ -198,7 +198,7 @@
                       <p class="text-gray-500">Free</p>
                     </div>
                   <button 
-                   on:click|preventDefault={() => $action = "UPGRADE"}
+                   on:click|preventDefault={() => $showUpgradeModal = true}
                     class="text-blue-500 text-sm">Change plan</button>
                   </div>
               </fieldset>

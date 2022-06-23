@@ -1,6 +1,6 @@
 <script>
   import { routeIsActive, Route } from "svelte-router-spa";
-  import { action } from "../../store.js"
+  import { showUpgradeModal } from "../../store.js"
 	import HeaderMenu from "../Menu/HeaderMenu.svelte"
   import { createEventDispatcher } from "svelte"
   export let currentRoute;
@@ -73,7 +73,7 @@
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
                 <button 
-                  on:click={() => $action = "UPGRADE"}
+                  on:click={() => $showUpgradeModal = true}
                   class="mr-4 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded text-sm">Upgrade</button>
             <button
               type="button"

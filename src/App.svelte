@@ -4,22 +4,10 @@
   import './lib/Tailwind.css'
   import Notifications from 'svelte-notifications';
   import { store } from './auth.js'
-  import { Modals, closeModal, openModal } from 'svelte-modals'
-  import PricingTable from "./components/Modals/PricingTable.svelte"
-  import { action } from "./store.js"
+  import { showUpgradeModal } from "./store.js"
   import { DataStore } from "aws-amplify"
   import { Settings } from "./models/index.js"
-
-  const resetAction = () => $action = null
-
-  function handleClick(action) {
-    if (action === "UPGRADE") {
-      openModal(PricingTable, { title: 'Alert', message: 'This is an alert' })
-      resetAction()
-    }
-  }
-
-  $: handleClick($action) 
+	import Pricing from "./components/Modals/Pricing.svelte"
 
   const handleAdd = async () => {
     try {
@@ -55,13 +43,10 @@
 
 </script>
 
-<Modals>
-<div
-      slot="backdrop"
-      class="backdrop"
-      on:click={closeModal}
-      />
-</Modals>
+
+{#if $showUpgradeModal}
+<Pricing />
+{/if}
 
 <Notifications>
 <button on:click={handleAdd} class="bg-indigo-700 text-white p-4">Add setting</button>
@@ -73,13 +58,3 @@
 </Notifications>
 
 
-<style>
-  .backdrop {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: rgba(0,0,0,0.50)
-  }
-</style>
