@@ -19,7 +19,7 @@
       : import.meta.env.VITE_STRIPE_PRICE_ID_2 === priceId
         ? "Business"
         : import.meta.env.VITE_STRIPE_PRICE_ID_3 === priceId
-          ? "Professional"
+          ? "Enterprise"
           : "Free"
     } catch(e) {
       return "Free"

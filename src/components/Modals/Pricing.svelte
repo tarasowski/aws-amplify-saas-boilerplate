@@ -77,7 +77,7 @@
                     <PriceOption 
                     planName="Personal" price={19} />
                     <PriceOption planName="Business" price={39} priceId={2}/>
-                    <PriceOption planName="Professional" price={79} priceId={3}/>
+                    <PriceOption planName="Enterprise" price={79} priceId={3}/>
                   </div>
                 </div>
               </section>
