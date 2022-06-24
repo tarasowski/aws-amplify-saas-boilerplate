@@ -11,6 +11,9 @@ export const onCreateSettings = /* GraphQL */ `
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
+      subscriptionStatus
+      amountTotal
+      priceId
       createdAt
       updatedAt
     }
@@ -26,6 +29,9 @@ export const onUpdateSettings = /* GraphQL */ `
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
+      subscriptionStatus
+      amountTotal
+      priceId
       createdAt
       updatedAt
     }
@@ -41,6 +47,9 @@ export const onDeleteSettings = /* GraphQL */ `
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
+      subscriptionStatus
+      amountTotal
+      priceId
       createdAt
       updatedAt
     }

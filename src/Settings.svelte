@@ -2,17 +2,37 @@
   import { showUpgradeModal, user } from "./store.js"
   import { onMount } from "svelte"
   import { callAPI } from "./graphql/"
-  import { createSettings, updateSettings } from "./graphql/mutations.js"
+  import { createSettings, updateSettings, stripeManageSubscription } from "./graphql/mutations.js"
   import { getSettings } from "./graphql/queries.js"
+  import Button from "./components/Buttons/Button.svelte"
 
+  const successUrl = import.meta.env.VITE_STRIPE_SUCCESS_URL
 
   const head = xs => xs[0]
+  let isLoading = false
+  let isLoadingManage = false
+
+  const getPriceIdName = priceId => { 
+    try {
+    return import.meta.env.VITE_STRIPE_PRICE_ID_1 === priceId
+      ? "Personal"
+      : import.meta.env.VITE_STRIPE_PRICE_ID_2 === priceId
+        ? "Business"
+        : import.meta.env.VITE_STRIPE_PRICE_ID_3 === priceId
+          ? "Professional"
+          : "Free"
+    } catch(e) {
+      return "Free"
+    }
+  }
 
   onMount(async () => {
     try {
     const res = await callAPI(getSettings, {organizationId: $user.organizationId})
     const data = res.data.getSettings
+      if (data) {
     $user = {...data}
+      }
     } catch(e) {
       console.log(e)
     }
@@ -20,21 +40,39 @@
   })
 
   const handleSave = async () => {
+    isLoading = true
     try {
-      await callAPI(createSettings, {input: {
-        organizationId: $user.organizationId,
-        firstName:  $user.firstName,
-        lastName: $user.lastName,
-        email: $user.email,
-        paymentStatus: "OPEN"
-      }})
-    } catch(e) {
-      console.log(e)
       await callAPI(updateSettings, {input: {
         organizationId: $user.organizationId,
         firstName:  $user.firstName,
         lastName: $user.lastName,
       }})
+      isLoading = false
+    } catch(e) {
+      console.log(e)
+      isLoading = false
+    }
+  }
+
+  const handleChangePlan = async () => {
+    isLoadingManage = true
+    try {
+      if ($user.subscriptionStatus === null) {
+        $showUpgradeModal = true
+      } else {
+        const data = await callAPI(stripeManageSubscription, {input: {
+          organizationId: $user.organizationId,
+          stripeCustomerId: $user.stripeCustomerId,
+          returnUrl: successUrl 
+        }})
+        const url = data.data.stripeManageSubscription
+        console.log(url)
+        window.open(url, "_self")
+      }
+    isLoadingManage = false
+    } catch(e) {
+      console.log(e)
+    isLoadingManage = false
     }
   }
 
@@ -190,13 +228,7 @@
               </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button
-                on:click|preventDefault={handleSave}
-                type="submit"
-                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Save
-              </button>
+              <Button bind:isLoading handler={handleSave} label={"Save"} />
             </div>
           </div>
         </form>
@@ -239,10 +271,14 @@
                     <div class="text-sm">
                       <label for="comments" class="font-medium text-gray-700">
                         Current plan</label>
-                      <p class="text-gray-500">Free</p>
+                      <p class="text-gray-500">
+                      {$user.priceId ? getPriceIdName($user.priceId) : "Free"}
+                      </p>
                     </div>
                   <button 
-                   on:click|preventDefault={() => $showUpgradeModal = true}
+                    disabled={isLoadingManage}
+                   on:click|preventDefault={handleChangePlan}
+                    class:cursor-wait={isLoadingManage}
                     class="text-blue-500 text-sm">Change plan</button>
                   </div>
               </fieldset>
@@ -253,12 +289,16 @@
                     <div class="flex items-center h-5"></div>
                     <div class="text-sm">
                       <label for="comments" class="font-medium text-gray-700"
-                        >Total Members</label
+                        >Monthly Price</label
                       >
-                      <p class="text-gray-500">0</p>
+                      <p class="text-gray-500">
+                      ${$user.amountTotal ? String($user.amountTotal).slice(0, 2) : 0}
+                      / month
+                      </p>
                     </div>
                   </div>
               </fieldset>
+              <!--
               <div class="border-t border-gray-200"></div>
               <fieldset>
                 <div class="mt-4 space-y-4">
@@ -272,6 +312,7 @@
                     </div>
                   </div>
               </fieldset>
+              -->
             </div>
           </div>
         </form>

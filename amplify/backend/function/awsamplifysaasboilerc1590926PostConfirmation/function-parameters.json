@@ -1,0 +1,27 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "awsamplifysaasboilerc1590926",
+  "functionName": "awsamplifysaasboilerc1590926PostConfirmation",
+  "resourceName": "awsamplifysaasboilerc1590926PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/snapshot/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "awsamplifysaasboilerc1590926PostConfirmation",
+  "skipEdit": true,
+  "enableCors": false,
+  "permissions": {
+    "storage": {
+      "Settings:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  }
+}

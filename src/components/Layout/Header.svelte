@@ -1,9 +1,14 @@
 <script>
-  import { routeIsActive, Route } from "svelte-router-spa";
+  import { routeIsActive, Route, navigateTo } from "svelte-router-spa";
   import { showUpgradeModal } from "../../store.js"
 	import HeaderMenu from "../Menu/HeaderMenu.svelte"
   import { createEventDispatcher } from "svelte"
+  import { user } from "../../store.js"
+  import { callAPI } from "../../graphql/"
+  import { stripeManageSubscription } from "../../graphql/mutations.js"
   export let currentRoute;
+
+  const successUrl = import.meta.env.VITE_STRIPE_SUCCESS_URL
 
   const dispatch = createEventDispatcher()
   let activeRouteName = ""
@@ -18,6 +23,22 @@
 
   $: activeRouteName = getRoute(currentRoute)
 
+  const handleUpgrade = async () => {
+    $showUpgradeModal = true
+  }
+
+  const getFirstLetter = () => {
+    try {
+      return $user.email.charAt(0).toUpperCase()
+    } catch(e) {}
+      return "N"
+  }
+
+  const handleLogoClick = () => {
+    navigateTo("dashboard")
+
+  }
+
 </script>
 
 
@@ -28,7 +49,8 @@
         <div class="flex items-center">
           <div class="flex-shrink-0">
             <img
-              class="h-8 w-8"
+              on:click={handleLogoClick}
+              class="h-8 w-8 cursor-pointer"
               src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
               alt="Workflow"
             />
@@ -72,9 +94,11 @@
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
+            {#if $user.subscriptionStatus === null}
                 <button 
-                  on:click={() => $showUpgradeModal = true}
+                  on:click={handleUpgrade}
                   class="mr-4 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded text-sm">Upgrade</button>
+            {/if}
             <button
               type="button"
               class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -110,7 +134,9 @@
                   aria-haspopup="true"
                 >
                   <span class="sr-only">Open user menu</span>
-                    <span class="text-white w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center mx-auto">DT</span>
+                    <span class="text-white w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center mx-auto">
+                      {getFirstLetter()}
+                    </span>
                 </button>
                 </HeaderMenu>
               </div>

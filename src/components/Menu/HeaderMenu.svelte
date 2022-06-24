@@ -6,6 +6,9 @@
     MenuItem,
     Transition,
   } from "@rgossiaux/svelte-headlessui";
+  import { logout } from "../../auth.js";
+
+  const handleLogout = () => logout();
 </script>
 
 <Menu>
@@ -28,6 +31,7 @@
         aria-labelledby="user-menu-button"
         tabindex="-1"
       >
+        <!--
         <MenuItem let:active>
           <a
             href="#"
@@ -38,6 +42,7 @@
             >Your Profile</a
           >
         </MenuItem>
+      -->
         <MenuItem let:active>
           <a
             href="/settings"
@@ -50,6 +55,7 @@
         </MenuItem>
         <MenuItem disabled>
           <a
+            on:click="{handleLogout}"
             href="/login"
             class="block px-4 py-2 text-sm text-gray-700"
             role="menuitem"

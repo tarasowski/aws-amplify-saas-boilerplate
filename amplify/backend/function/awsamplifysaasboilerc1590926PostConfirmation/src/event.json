@@ -1,0 +1,21 @@
+{
+  "version": "1",
+  "region": "eu-central-1",
+  "userPoolId": "eu-central-1_oOGHh6HOQ",
+  "userName": "1f6c90f9-8496-4cc7-90f4-329c969ef895",
+  "callerContext": {
+    "awsSdkVersion": "aws-sdk-unknown-unknown",
+    "clientId": "3e1ntl33a26dmo4epm1202o6fg"
+  },
+  "triggerSource": "PostConfirmation_ConfirmSignUp",
+  "request": {
+    "userAttributes": {
+      "sub": "1f6c90f9-8496-4cc7-90f4-329c969ef895",
+      "email_verified": "true",
+      "cognito:user_status": "CONFIRMED",
+      "cognito:email_alias": "dimitri+post@tarasowski.de",
+      "email": "dimitri+post@tarasowski.de"
+    }
+  },
+  "response": {}
+}

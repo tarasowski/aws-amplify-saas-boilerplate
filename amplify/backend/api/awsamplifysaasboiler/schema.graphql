@@ -6,6 +6,7 @@
 type Mutation 
 {
   stripeCreateSubscription(input: StripeCreateSubscriptionInput!): String @function(name: "StripeCreateSubscription-${env}")
+  stripeManageSubscription(input: StripeManageSubscriptionInput!): String @function(name: "StripeManageSubscription-${env}")
 }
 
 input StripeCreateSubscriptionInput {
@@ -13,6 +14,13 @@ input StripeCreateSubscriptionInput {
   priceId: String!
   successUrl: String!
   cancelUrl: String!
+}
+
+
+input StripeManageSubscriptionInput {
+  organizationId: ID!
+  stripeCustomerId: String!
+  returnUrl: String!
 }
 
 type Settings 
@@ -26,6 +34,15 @@ type Settings
   stripeCustomerId: String 
   stripeSubscriptionId: String
   paymentStatus: PaymentStatusEnum
+  subscriptionStatus: SubscriptionStatusEnum
+  amountTotal: Int
+  priceId: String
+}
+
+
+enum SubscriptionStatusEnum {
+  ACTIVE
+  CANCELED
 }
 
 enum PaymentStatusEnum {

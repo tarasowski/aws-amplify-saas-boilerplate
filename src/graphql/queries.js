@@ -11,6 +11,9 @@ export const getSettings = /* GraphQL */ `
       stripeCustomerId
       stripeSubscriptionId
       paymentStatus
+      subscriptionStatus
+      amountTotal
+      priceId
       createdAt
       updatedAt
     }
@@ -39,6 +42,9 @@ export const listSettings = /* GraphQL */ `
         stripeCustomerId
         stripeSubscriptionId
         paymentStatus
+        subscriptionStatus
+        amountTotal
+        priceId
         createdAt
         updatedAt
       }

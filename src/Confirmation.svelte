@@ -3,7 +3,7 @@
   import reporter from "@felte/reporter-tippy";
   import { validator } from "@felte/validator-yup";
   import * as yup from "yup";
-  import { store, confirmation } from "./auth.js";
+  import { store, confirmation, login } from "./auth.js";
   import { getNotificationsContext } from "svelte-notifications";
   import "tippy.js/dist/tippy.css";
   import { navigateTo } from "svelte-router-spa";
@@ -24,7 +24,8 @@
       $store = { ...$store, ...values };
       await confirmation($store.email, $store.confirmationCode);
     },
-    onSuccess: (values) => {
+    onSuccess: async (values) => {
+      await login($store);
       isLoading = false;
       navigateTo("dashboard");
     },

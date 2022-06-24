@@ -8,7 +8,7 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 
 const stripe = Stripe(STRIPE_SECRET_KEY);
 
-const session = async (organizationId, priceId, successUrl, cancelUrl) =>
+const session = async (organizationId, priceId, successUrl, cancelUrl, packageName) =>
   await stripe.checkout.sessions.create({
     mode: "subscription",
     automatic_tax: {
@@ -21,12 +21,19 @@ const session = async (organizationId, priceId, successUrl, cancelUrl) =>
       },
     ],
     client_reference_id: organizationId,
+    metadata: {
+      priceId
+    },
+    subscription_data: {
+      metadata: {
+        organizationId
+      }
+    },
     success_url: successUrl + "?session_id={CHECKOUT_SESSION_ID}",
     cancel_url: cancelUrl,
   });
 
 const handler = async (event) => {
-  console.log(event);
   try {
     const { organizationId, priceId, successUrl, cancelUrl } =
       event.arguments.input;

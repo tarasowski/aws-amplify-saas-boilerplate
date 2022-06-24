@@ -10,9 +10,9 @@ import { user } from "./store.js";
 
 const userIsAdmin = (x) => {
   try {
-    const userDataKey = localStorage.key(3);
-    const userData = localStorage.getItem(userDataKey);
-    const parsed = JSON.parse(userData);
+    const keys = Object.entries(localStorage).flat();
+    const userAttributes = keys.find((y) => y.includes("UserAttributes"));
+    const parsed = JSON.parse(userAttributes);
     const username = parsed.Username;
     const email = parsed.UserAttributes.find((y) => y.Name === "email");
     const emailValue = email.Value;

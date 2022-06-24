@@ -10,6 +10,8 @@
   const priceId1 = import.meta.env.VITE_STRIPE_PRICE_ID_1;
   const priceId2 = import.meta.env.VITE_STRIPE_PRICE_ID_2;
   const priceId3 = import.meta.env.VITE_STRIPE_PRICE_ID_3;
+  const successUrl = import.meta.env.VITE_STRIPE_SUCCESS_URL
+  const cancelUrl = import.meta.env.VITE_STRIPE_CANCEL_URL
 
   const createSubscription = async () => {
     isLoading = true
@@ -24,8 +26,8 @@
               : planName === "Professional"
                 ? priceId3
                 :priceId1,
-          successUrl: "http://localhost:3000/settings",
-          cancelUrl: "http://localhost:3000/settings",
+          successUrl: successUrl,
+          cancelUrl: cancelUrl,
         },
       });
       const url = res.data.stripeCreateSubscription;

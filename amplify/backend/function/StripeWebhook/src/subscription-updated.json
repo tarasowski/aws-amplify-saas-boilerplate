@@ -1,0 +1,117 @@
+{
+    "resource": "/stripe/webhook",
+    "path": "/stripe/webhook",
+    "httpMethod": "POST",
+    "headers": {
+        "Accept": "*/*; q=0.5, application/xml",
+        "Cache-Control": "no-cache",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Content-Type": "application/json; charset=utf-8",
+        "Host": "akjmq01rhe.execute-api.eu-central-1.amazonaws.com",
+        "Stripe-Signature": "t=1656067998,v1=35679000d99699b7007ae28375834ff36d5d279084a520b98b31c2fa521fb8fe,v0=6c65b7bb279972e24e3bcab93d8f3ef312eadee66099e16a12a82aa2d20d959e",
+        "User-Agent": "Stripe/1.0 (+https://stripe.com/docs/webhooks)",
+        "Via": "1.1 1bfde73e7d02732154f58c7e03609d08.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "y9dfu3C6XDEyTLxT2e5eB98kErhIEbvNE27QxRzfgTg-Rlk3n7X8uQ==",
+        "X-Amzn-Trace-Id": "Root=1-62b5979e-7ef4c78c022e920779f932e1",
+        "X-Forwarded-For": "54.187.205.235, 130.176.100.137",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "*/*; q=0.5, application/xml"
+        ],
+        "Cache-Control": [
+            "no-cache"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-Country": [
+            "US"
+        ],
+        "Content-Type": [
+            "application/json; charset=utf-8"
+        ],
+        "Host": [
+            "akjmq01rhe.execute-api.eu-central-1.amazonaws.com"
+        ],
+        "Stripe-Signature": [
+            "t=1656067998,v1=35679000d99699b7007ae28375834ff36d5d279084a520b98b31c2fa521fb8fe,v0=6c65b7bb279972e24e3bcab93d8f3ef312eadee66099e16a12a82aa2d20d959e"
+        ],
+        "User-Agent": [
+            "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+        ],
+        "Via": [
+            "1.1 1bfde73e7d02732154f58c7e03609d08.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "y9dfu3C6XDEyTLxT2e5eB98kErhIEbvNE27QxRzfgTg-Rlk3n7X8uQ=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-62b5979e-7ef4c78c022e920779f932e1"
+        ],
+        "X-Forwarded-For": [
+            "54.187.205.235, 130.176.100.137"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "0prgka",
+        "resourcePath": "/stripe/webhook",
+        "httpMethod": "POST",
+        "extendedRequestId": "UOSgyGVpFiAFphg=",
+        "requestTime": "24/Jun/2022:10:53:18 +0000",
+        "path": "/master/stripe/webhook",
+        "accountId": "272589676550",
+        "protocol": "HTTP/1.1",
+        "stage": "master",
+        "domainPrefix": "akjmq01rhe",
+        "requestTimeEpoch": 1656067998421,
+        "requestId": "e9b4b477-a063-443d-8388-d6fba321ec68",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "54.187.205.235",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Stripe/1.0 (+https://stripe.com/docs/webhooks)",
+            "user": null
+        },
+        "domainName": "akjmq01rhe.execute-api.eu-central-1.amazonaws.com",
+        "apiId": "akjmq01rhe"
+    },
+    "body": "{\n  \"id\": \"evt_1LEA8YFcQlPUaLrGGckE6iJS\",\n  \"object\": \"event\",\n  \"api_version\": \"2020-08-27\",\n  \"created\": 1656067997,\n  \"data\": {\n    \"object\": {\n      \"id\": \"sub_1LEA6BFcQlPUaLrG6zucRyur\",\n      \"object\": \"subscription\",\n      \"application\": null,\n      \"application_fee_percent\": null,\n      \"automatic_tax\": {\n        \"enabled\": true\n      },\n      \"billing_cycle_anchor\": 1656067851,\n      \"billing_thresholds\": null,\n      \"cancel_at\": null,\n      \"cancel_at_period_end\": false,\n      \"canceled_at\": null,\n      \"collection_method\": \"charge_automatically\",\n      \"created\": 1656067851,\n      \"current_period_end\": 1658659851,\n      \"current_period_start\": 1656067851,\n      \"customer\": \"cus_Lw2A1Jif7vgFjd\",\n      \"days_until_due\": null,\n      \"default_payment_method\": \"pm_1LEA6AFcQlPUaLrGdYkBR5Tx\",\n      \"default_source\": null,\n      \"default_tax_rates\": [\n\n      ],\n      \"description\": null,\n      \"discount\": null,\n      \"ended_at\": null,\n      \"items\": {\n        \"object\": \"list\",\n        \"data\": [\n          {\n            \"id\": \"si_Lw2AwzyeTJgoNd\",\n            \"object\": \"subscription_item\",\n            \"billing_thresholds\": null,\n            \"created\": 1656067852,\n            \"metadata\": {\n            },\n            \"plan\": {\n              \"id\": \"price_1LDonXFcQlPUaLrGmX6AoSWH\",\n              \"object\": \"plan\",\n              \"active\": true,\n              \"aggregate_usage\": null,\n              \"amount\": 3900,\n              \"amount_decimal\": \"3900\",\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1655985971,\n              \"currency\": \"usd\",\n              \"interval\": \"month\",\n              \"interval_count\": 1,\n              \"livemode\": false,\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_Lvg9ME2T1YobWa\",\n              \"tiers_mode\": null,\n              \"transform_usage\": null,\n              \"trial_period_days\": null,\n              \"usage_type\": \"licensed\"\n            },\n            \"price\": {\n              \"id\": \"price_1LDonXFcQlPUaLrGmX6AoSWH\",\n              \"object\": \"price\",\n              \"active\": true,\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1655985971,\n              \"currency\": \"usd\",\n              \"custom_unit_amount\": null,\n              \"livemode\": false,\n              \"lookup_key\": null,\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_Lvg9ME2T1YobWa\",\n              \"recurring\": {\n                \"aggregate_usage\": null,\n                \"interval\": \"month\",\n                \"interval_count\": 1,\n                \"trial_period_days\": null,\n                \"usage_type\": \"licensed\"\n              },\n              \"tax_behavior\": \"inclusive\",\n              \"tiers_mode\": null,\n              \"transform_quantity\": null,\n              \"type\": \"recurring\",\n              \"unit_amount\": 3900,\n              \"unit_amount_decimal\": \"3900\"\n            },\n            \"quantity\": 1,\n            \"subscription\": \"sub_1LEA6BFcQlPUaLrG6zucRyur\",\n            \"tax_rates\": [\n\n            ]\n          }\n        ],\n        \"has_more\": false,\n        \"total_count\": 1,\n        \"url\": \"/v1/subscription_items?subscription=sub_1LEA6BFcQlPUaLrG6zucRyur\"\n      },\n      \"latest_invoice\": \"in_1LEA8WFcQlPUaLrGlHYOKEzM\",\n      \"livemode\": false,\n      \"metadata\": {\n        \"organizationId\": \"e58d4859-a02b-47e2-b408-f7fa4f6be042\"\n      },\n      \"next_pending_invoice_item_invoice\": null,\n      \"pause_collection\": null,\n      \"payment_settings\": {\n        \"payment_method_options\": null,\n        \"payment_method_types\": null,\n        \"save_default_payment_method\": \"off\"\n      },\n      \"pending_invoice_item_interval\": null,\n      \"pending_setup_intent\": null,\n      \"pending_update\": null,\n      \"plan\": {\n        \"id\": \"price_1LDonXFcQlPUaLrGmX6AoSWH\",\n        \"object\": \"plan\",\n        \"active\": true,\n        \"aggregate_usage\": null,\n        \"amount\": 3900,\n        \"amount_decimal\": \"3900\",\n        \"billing_scheme\": \"per_unit\",\n        \"created\": 1655985971,\n        \"currency\": \"usd\",\n        \"interval\": \"month\",\n        \"interval_count\": 1,\n        \"livemode\": false,\n        \"metadata\": {\n        },\n        \"nickname\": null,\n        \"product\": \"prod_Lvg9ME2T1YobWa\",\n        \"tiers_mode\": null,\n        \"transform_usage\": null,\n        \"trial_period_days\": null,\n        \"usage_type\": \"licensed\"\n      },\n      \"quantity\": 1,\n      \"schedule\": null,\n      \"start_date\": 1656067851,\n      \"status\": \"active\",\n      \"test_clock\": null,\n      \"transfer_data\": null,\n      \"trial_end\": null,\n      \"trial_start\": null\n    },\n    \"previous_attributes\": {\n      \"items\": {\n        \"data\": [\n          {\n            \"id\": \"si_Lw2AwzyeTJgoNd\",\n            \"object\": \"subscription_item\",\n            \"billing_thresholds\": null,\n            \"created\": 1656067852,\n            \"metadata\": {\n            },\n            \"plan\": {\n              \"id\": \"price_1LDol7FcQlPUaLrGE0Yk1Ks0\",\n              \"object\": \"plan\",\n              \"active\": true,\n              \"aggregate_usage\": null,\n              \"amount\": 1900,\n              \"amount_decimal\": \"1900\",\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1655985821,\n              \"currency\": \"usd\",\n              \"interval\": \"month\",\n              \"interval_count\": 1,\n              \"livemode\": false,\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_Lvg7PX2xr5TtTM\",\n              \"tiers_mode\": null,\n              \"transform_usage\": null,\n              \"trial_period_days\": null,\n              \"usage_type\": \"licensed\"\n            },\n            \"price\": {\n              \"id\": \"price_1LDol7FcQlPUaLrGE0Yk1Ks0\",\n              \"object\": \"price\",\n              \"active\": true,\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1655985821,\n              \"currency\": \"usd\",\n              \"custom_unit_amount\": null,\n              \"livemode\": false,\n              \"lookup_key\": null,\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_Lvg7PX2xr5TtTM\",\n              \"recurring\": {\n                \"aggregate_usage\": null,\n                \"interval\": \"month\",\n                \"interval_count\": 1,\n                \"trial_period_days\": null,\n                \"usage_type\": \"licensed\"\n              },\n              \"tax_behavior\": \"inclusive\",\n              \"tiers_mode\": null,\n              \"transform_quantity\": null,\n              \"type\": \"recurring\",\n              \"unit_amount\": 1900,\n              \"unit_amount_decimal\": \"1900\"\n            },\n            \"quantity\": 1,\n            \"subscription\": \"sub_1LEA6BFcQlPUaLrG6zucRyur\",\n            \"tax_rates\": [\n\n            ]\n          }\n        ]\n      },\n      \"latest_invoice\": \"in_1LEA6gFcQlPUaLrGAJgjmnkA\",\n      \"plan\": {\n        \"id\": \"price_1LDol7FcQlPUaLrGE0Yk1Ks0\",\n        \"amount\": 1900,\n        \"amount_decimal\": \"1900\",\n        \"created\": 1655985821,\n        \"product\": \"prod_Lvg7PX2xr5TtTM\"\n      }\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": null,\n    \"idempotency_key\": \"80ced903-168c-44dd-b6ec-ddac0894bbf2\"\n  },\n  \"type\": \"customer.subscription.updated\"\n}",
+    "isBase64Encoded": false
+}

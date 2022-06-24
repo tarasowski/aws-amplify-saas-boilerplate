@@ -1,0 +1,117 @@
+{
+    "resource": "/stripe/webhook",
+    "path": "/stripe/webhook",
+    "httpMethod": "POST",
+    "headers": {
+        "Accept": "*/*; q=0.5, application/xml",
+        "Cache-Control": "no-cache",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Content-Type": "application/json; charset=utf-8",
+        "Host": "akjmq01rhe.execute-api.eu-central-1.amazonaws.com",
+        "Stripe-Signature": "t=1656062493,v1=85449c97aa760d72d23574f871dea383cf8b7f4a32cbb2fd3c5b922c1cacbe94,v0=4fed8ea1944d25203b8e49e38a05d6b439a64ab46d66d955dbb87c777d2835ff",
+        "User-Agent": "Stripe/1.0 (+https://stripe.com/docs/webhooks)",
+        "Via": "1.1 078213358ed22cd95c76373c4ed65b5a.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "inelNhZQQxCQH_vLWrycLrY54zm8YUmnWDlbpheB4-Y0JMPqGEVbXg==",
+        "X-Amzn-Trace-Id": "Root=1-62b5821d-1ea2dd9a4fc37a1f7881223f",
+        "X-Forwarded-For": "54.187.216.72, 130.176.100.135",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "*/*; q=0.5, application/xml"
+        ],
+        "Cache-Control": [
+            "no-cache"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-Country": [
+            "US"
+        ],
+        "Content-Type": [
+            "application/json; charset=utf-8"
+        ],
+        "Host": [
+            "akjmq01rhe.execute-api.eu-central-1.amazonaws.com"
+        ],
+        "Stripe-Signature": [
+            "t=1656062493,v1=85449c97aa760d72d23574f871dea383cf8b7f4a32cbb2fd3c5b922c1cacbe94,v0=4fed8ea1944d25203b8e49e38a05d6b439a64ab46d66d955dbb87c777d2835ff"
+        ],
+        "User-Agent": [
+            "Stripe/1.0 (+https://stripe.com/docs/webhooks)"
+        ],
+        "Via": [
+            "1.1 078213358ed22cd95c76373c4ed65b5a.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "inelNhZQQxCQH_vLWrycLrY54zm8YUmnWDlbpheB4-Y0JMPqGEVbXg=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-62b5821d-1ea2dd9a4fc37a1f7881223f"
+        ],
+        "X-Forwarded-For": [
+            "54.187.216.72, 130.176.100.135"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "0prgka",
+        "resourcePath": "/stripe/webhook",
+        "httpMethod": "POST",
+        "extendedRequestId": "UOFErGVbliAFr2g=",
+        "requestTime": "24/Jun/2022:09:21:33 +0000",
+        "path": "/master/stripe/webhook",
+        "accountId": "272589676550",
+        "protocol": "HTTP/1.1",
+        "stage": "master",
+        "domainPrefix": "akjmq01rhe",
+        "requestTimeEpoch": 1656062493701,
+        "requestId": "93af530e-7d69-4d61-8b3c-43746bc72a9c",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "54.187.216.72",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Stripe/1.0 (+https://stripe.com/docs/webhooks)",
+            "user": null
+        },
+        "domainName": "akjmq01rhe.execute-api.eu-central-1.amazonaws.com",
+        "apiId": "akjmq01rhe"
+    },
+    "body": "{\n  \"id\": \"evt_1LE8hlFcQlPUaLrGGokTs5oe\",\n  \"object\": \"event\",\n  \"api_version\": \"2020-08-27\",\n  \"created\": 1656062493,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cs_test_a1xVxdaUS9wfMn2XVgAauoNbfNbY0GpUdNXkDvTyNY23hIJydV4ihDL3wz\",\n      \"object\": \"checkout.session\",\n      \"after_expiration\": null,\n      \"allow_promotion_codes\": null,\n      \"amount_subtotal\": 3900,\n      \"amount_total\": 3900,\n      \"automatic_tax\": {\n        \"enabled\": true,\n        \"status\": \"complete\"\n      },\n      \"billing_address_collection\": null,\n      \"cancel_url\": \"http://localhost:3000/settings\",\n      \"client_reference_id\": \"e58d4859-a02b-47e2-b408-f7fa4f6be042\",\n      \"consent\": null,\n      \"consent_collection\": null,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_Lw0jJDJymfXiTr\",\n      \"customer_creation\": \"always\",\n      \"customer_details\": {\n        \"address\": {\n          \"city\": \"Berlin\",\n          \"country\": \"DE\",\n          \"line1\": \"Bruno-Bürgel-Weg\",\n          \"line2\": null,\n          \"postal_code\": \"12439\",\n          \"state\": null\n        },\n        \"email\": \"dimitri@tarasowski.de\",\n        \"name\": \"Dimitri Tarasowski\",\n        \"phone\": null,\n        \"tax_exempt\": \"none\",\n        \"tax_ids\": [\n\n        ]\n      },\n      \"customer_email\": null,\n      \"expires_at\": 1656148866,\n      \"livemode\": false,\n      \"locale\": null,\n      \"metadata\": {\n        \"packageName\": \"BUSINESS\",\n        \"priceId\": \"price_1LDonXFcQlPUaLrGmX6AoSWH\"\n      },\n      \"mode\": \"subscription\",\n      \"payment_intent\": null,\n      \"payment_link\": null,\n      \"payment_method_options\": null,\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"payment_status\": \"paid\",\n      \"phone_number_collection\": {\n        \"enabled\": false\n      },\n      \"recovered_from\": null,\n      \"setup_intent\": null,\n      \"shipping\": null,\n      \"shipping_address_collection\": null,\n      \"shipping_options\": [\n\n      ],\n      \"shipping_rate\": null,\n      \"status\": \"complete\",\n      \"submit_type\": null,\n      \"subscription\": \"sub_1LE8hhFcQlPUaLrGJAia9OTx\",\n      \"success_url\": \"http://localhost:3000/settings?session_id={CHECKOUT_SESSION_ID}\",\n      \"total_details\": {\n        \"amount_discount\": 0,\n        \"amount_shipping\": 0,\n        \"amount_tax\": 623\n      },\n      \"url\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": null,\n    \"idempotency_key\": null\n  },\n  \"type\": \"checkout.session.completed\"\n}",
+    "isBase64Encoded": false
+}
