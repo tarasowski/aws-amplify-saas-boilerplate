@@ -1,14 +1,16 @@
-import Login from "./Login.svelte";
-import Register from "./Register.svelte";
-import Confirmation from "./Confirmation.svelte";
-import ForgotPasswordStep1 from "./ForgotPasswordStep1.svelte";
-import ForgotPasswordStep2 from "./ForgotPasswordStep2.svelte";
-import Dashboard from "./Dashboard.svelte";
-import Settings from "./Settings.svelte";
+import Login from "./views/auth/Login.svelte";
+import Register from "./views/auth/Register.svelte";
+import Confirmation from "./views/auth/Confirmation.svelte";
+import ForgotPasswordStep1 from "./views/auth/ForgotPasswordStep1.svelte";
+import ForgotPasswordStep2 from "./views/auth/ForgotPasswordStep2.svelte";
+import Dashboard from "./views/dashboard/Dashboard.svelte";
+import Settings from "./views/settings/Settings.svelte";
 import Header from "./components/Layout/Header.svelte";
 import { user } from "./store.js";
+import { callAPI } from "./graphql"
+import { getSettings } from "./graphql/queries.js"
 
-const userIsAdmin = (x) => {
+export const userIsAdmin = (x) => {
   try {
     const keys = Object.entries(localStorage).flat();
     const userAttributes = keys.find((y) => y.includes("UserAttributes"));
@@ -17,6 +19,8 @@ const userIsAdmin = (x) => {
     const email = parsed.UserAttributes.find((y) => y.Name === "email");
     const emailValue = email.Value;
     user.set({ email: emailValue, organizationId: username });
+    callAPI(getSettings, {organizationId: username}).then(x => x.data.getSettings)
+                                                    .then(u => user.set(u))
     return username !== undefined;
   } catch (e) {
     console.log(e);

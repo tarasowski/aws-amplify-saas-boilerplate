@@ -1,12 +1,7 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
-<!--
-  This example requires updating your template:
+<script>
+  import { user } from "../../store.js"
 
-  ```
-  <html class="h-full bg-gray-100">
-  <body class="h-full">
-  ```
--->
+</script>
 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
   This is my dashbaord
   <!-- Replace with your content -->

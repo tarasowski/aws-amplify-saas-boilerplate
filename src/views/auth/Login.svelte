@@ -3,33 +3,42 @@
   import reporter from "@felte/reporter-tippy";
   import { validator } from "@felte/validator-yup";
   import * as yup from "yup";
-  import { store, confirmation, login } from "./auth.js";
+  import { store, login } from "./auth.js";
   import { getNotificationsContext } from "svelte-notifications";
-  import "tippy.js/dist/tippy.css";
   import { navigateTo } from "svelte-router-spa";
+  import "tippy.js/dist/tippy.css";
+  import { onMount } from "svelte"
+  import { userIsAdmin } from "../../routes.js"
+
+  onMount(() => {
+    const isAdmin = userIsAdmin()
+    if (isAdmin) navigateTo("dashboard")
+  })
 
   let isLoading = false;
   const { addNotification } = getNotificationsContext();
 
   const schema = yup.object({
-    confirmationCode: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup.string().required(),
   });
 
   const { form } = createForm({
     initialValues: {
-      confirmationCode: "",
+      email: "",
+      password: "",
     },
     onSubmit: async (values) => {
       isLoading = true;
-      $store = { ...$store, ...values };
-      await confirmation($store.email, $store.confirmationCode);
+      $store = values;
+      await login(values);
     },
-    onSuccess: async (values) => {
-      await login($store);
-      isLoading = false;
+    onSuccess: (values) => {
       navigateTo("dashboard");
+      isLoading = false;
     },
     onError: (values) => {
+      console.log("from error", values.message);
       addNotification({
         text: values.message,
         position: "top-center",
@@ -44,17 +53,28 @@
 <!-- component -->
 <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
   <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-    <h1 class="font-bold text-center text-2xl mb-5">Confirmation</h1>
-    <p class="text-center mb-4">Confirmation code was sent to your inbox</p>
+    <h1 class="font-bold text-center text-2xl mb-2">Login to your account</h1>
+    <p class="text-center mb-4">
+      Or
+      <a href="/register" class="text-blue-500">register a free account</a>
+    </p>
     <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
       <div class="px-5 py-7">
         <form use:form>
           <label class="font-semibold text-sm text-gray-600 pb-1 block"
-            >Confirmation Code</label
+            >E-mail</label
           >
           <input
             type="text"
-            name="confirmationCode"
+            name="email"
+            class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+          />
+          <label class="font-semibold text-sm text-gray-600 pb-1 block"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
             class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
           />
           {#if isLoading === false}
@@ -62,7 +82,7 @@
             type="submit"
             class="transition duration-200 bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
           >
-            <span class="inline-block mr-2">Confirm</span>
+            <span class="inline-block mr-2">Login</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -83,9 +103,9 @@
           <button
             disabled
             type="submit"
-            class="transition duration-200 bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+            class="transition duration-200 bg-indigo-600 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
           >
-            <span class="inline-block mr-2">Confirm</span>
+            <span class="inline-block mr-2">Login</span>
             <svg
               role="status"
               class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600"
@@ -109,25 +129,27 @@
       <div class="py-5">
         <div class="grid grid-cols-2 gap-1">
           <div class="text-center sm:text-left whitespace-nowrap">
-            <button
-              class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="w-4 h-4 inline-block align-text-top"
+            <a href="/forgot-1">
+              <button
+                class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
-                />
-              </svg>
-              <span class="inline-block ml-1">Forgot Password</span>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-4 h-4 inline-block align-text-top"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+                  />
+                </svg>
+                <span class="inline-block ml-1">Forgot Password</span>
+              </button>
+            </a>
           </div>
           <div class="text-center sm:text-right whitespace-nowrap">
             <button

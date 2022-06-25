@@ -1,10 +1,10 @@
 <script>
-  import { showUpgradeModal, user } from "./store.js"
+  import { showUpgradeModal, user } from "../../store.js"
   import { onMount } from "svelte"
-  import { callAPI } from "./graphql/"
-  import { createSettings, updateSettings, stripeManageSubscription } from "./graphql/mutations.js"
-  import { getSettings } from "./graphql/queries.js"
-  import Button from "./components/Buttons/Button.svelte"
+  import { callAPI } from "../../graphql/"
+  import { createSettings, updateSettings, stripeManageSubscription } from "../../graphql/mutations.js"
+  import { getSettings } from "../../graphql/queries.js"
+  import Button from "../../components/Buttons/Button.svelte"
 
   const successUrl = import.meta.env.VITE_STRIPE_SUCCESS_URL
 

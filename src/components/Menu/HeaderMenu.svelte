@@ -6,7 +6,7 @@
     MenuItem,
     Transition,
   } from "@rgossiaux/svelte-headlessui";
-  import { logout } from "../../auth.js";
+  import { logout } from "../../views/auth/auth.js";
 
   const handleLogout = () => logout();
 </script>

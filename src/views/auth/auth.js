@@ -21,6 +21,7 @@ export const confirmation = async (email, code) =>
 export const login = async (form) =>
   await Auth.signIn(form.email, form.password);
 
-export const store = writable(null);
+export const store = writable(null)
 
 export const logout = () => localStorage.clear();
+
